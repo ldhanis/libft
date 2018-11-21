@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldhanis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 13:55:20 by ldhanis           #+#    #+#             */
-/*   Updated: 2018/10/05 16:40:35 by ldhanis          ###   ########.fr       */
+/*   Created: 2018/10/10 17:08:57 by ldhanis           #+#    #+#             */
+/*   Updated: 2018/10/22 19:21:32 by ldhanis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *s)
+int			ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	size_t len;
-
-	len = 0;
-	while (*s != '\0')
-	{
-		s++;
-		len++;
-	}
-	return (len);
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	if (ft_strncmp(s1, s2, n) == 0)
+		return (1);
+	return (0);
 }

@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldhanis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 13:55:20 by ldhanis           #+#    #+#             */
-/*   Updated: 2018/10/05 16:40:35 by ldhanis          ###   ########.fr       */
+/*   Created: 2018/10/10 17:20:57 by ldhanis           #+#    #+#             */
+/*   Updated: 2018/10/22 19:47:33 by ldhanis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *s)
+char		*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	size_t len;
+	char			*monstring;
+	unsigned int	i;
 
-	len = 0;
-	while (*s != '\0')
+	monstring = (char *)malloc(sizeof(char) * (len + 1));
+	if (s != NULL && monstring != NULL)
 	{
-		s++;
-		len++;
+		i = 0;
+		while (i < len)
+		{
+			monstring[i] = (char)s[start + i];
+			i++;
+		}
+		monstring[i] = '\0';
 	}
-	return (len);
+	return (monstring);
 }

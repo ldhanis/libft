@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldhanis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 13:55:20 by ldhanis           #+#    #+#             */
-/*   Updated: 2018/10/05 16:40:35 by ldhanis          ###   ########.fr       */
+/*   Created: 2018/10/10 16:21:34 by ldhanis           #+#    #+#             */
+/*   Updated: 2018/10/22 18:02:36 by ldhanis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *s)
+void		ft_striter(char *s, void (*f)(char *))
 {
-	size_t len;
-
-	len = 0;
-	while (*s != '\0')
+	if (s != NULL && f != NULL)
 	{
-		s++;
-		len++;
+		while (*s)
+		{
+			f(s);
+			s++;
+		}
 	}
-	return (len);
 }

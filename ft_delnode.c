@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_delnode.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldhanis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 13:55:20 by ldhanis           #+#    #+#             */
-/*   Updated: 2018/10/05 16:40:35 by ldhanis          ###   ########.fr       */
+/*   Created: 2018/10/24 14:39:14 by ldhanis           #+#    #+#             */
+/*   Updated: 2018/10/24 15:41:10 by ldhanis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *s)
+void		ft_delnode(void *element, size_t size)
 {
-	size_t len;
+	t_list *deref;
 
-	len = 0;
-	while (*s != '\0')
+	if (element != NULL)
 	{
-		s++;
-		len++;
+		size = 0;
+		deref = (t_list *)element;
+		if (deref->content != NULL)
+			free(deref->content);
+		if (deref->next != NULL)
+			deref->next = NULL;
+		free(element);
 	}
-	return (len);
 }

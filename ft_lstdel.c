@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldhanis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 13:55:20 by ldhanis           #+#    #+#             */
-/*   Updated: 2018/10/05 16:40:35 by ldhanis          ###   ########.fr       */
+/*   Created: 2018/10/19 15:34:14 by ldhanis           #+#    #+#             */
+/*   Updated: 2018/10/24 14:50:00 by ldhanis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *s)
+void		ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	size_t len;
+	t_list *iterator;
+	t_list *next;
 
-	len = 0;
-	while (*s != '\0')
+	if (alst == NULL || del == NULL)
+		return ;
+	iterator = *alst;
+	while (iterator != NULL)
 	{
-		s++;
-		len++;
+		next = iterator->next;
+		ft_lstdelone(&iterator, del);
+		iterator = next;
 	}
-	return (len);
+	*alst = NULL;
 }

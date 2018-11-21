@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldhanis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 13:55:20 by ldhanis           #+#    #+#             */
-/*   Updated: 2018/10/05 16:40:35 by ldhanis          ###   ########.fr       */
+/*   Created: 2018/10/19 16:51:19 by ldhanis           #+#    #+#             */
+/*   Updated: 2018/10/24 15:15:10 by ldhanis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *s)
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	size_t len;
+	t_list	*list_start;
+	t_list	*iterator;
 
-	len = 0;
-	while (*s != '\0')
+	if (lst == NULL || f == NULL)
+		return (NULL);
+	list_start = f(lst);
+	iterator = list_start;
+	while (lst->next != NULL)
 	{
-		s++;
-		len++;
+		lst = lst->next;
+		if (!(iterator->next = f(lst)))
+		{
+			ft_lstdel(&list_start, ft_delnode);
+			return (NULL);
+		}
+		else
+			iterator = iterator->next;
 	}
-	return (len);
+	return (list_start);
 }
